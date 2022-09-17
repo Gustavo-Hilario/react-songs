@@ -1,6 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
+import { selectSong } from "../actions";
 
 class SongList extends React.Component {
     renderList() {
@@ -8,7 +9,14 @@ class SongList extends React.Component {
             return (
                 <div className="item" key={song.title}>
                     <div className="right floated content">
-                        <button className="ui button primary">Select</button>
+                        <button
+                            onClick={() => {
+                                this.props.selectSong(song);
+                            }}
+                            className="ui button primary"
+                        >
+                            Select
+                        </button>
                     </div>
                     <div className="content">{song.title}</div>
                 </div>
@@ -17,6 +25,7 @@ class SongList extends React.Component {
     }
 
     render() {
+        console.log();
         return <div className="ui divided list">{this.renderList()}</div>;
     }
 }
@@ -24,10 +33,11 @@ class SongList extends React.Component {
 // mapStateToProps is a convention
 
 const mapStateToProps = (state) => {
-    // console.log(state);
+    // This re-run whenever we run reducers or change states
+    console.log(state);
     return { songs: state.songs };
 };
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, { selectSong })(
     SongList
 ) /* Returning and running a function inside connect */;
