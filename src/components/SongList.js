@@ -12,6 +12,13 @@ class SongList extends React.Component {
     }
 }
 
-export default connect()(
+// mapStateToProps is a convention
+
+const mapStateToProps = (state) => {
+    // console.log(state);
+    return { songs: state.songs };
+};
+
+export default connect(mapStateToProps)(
     SongList
 ) /* Returning and running a function inside connect */;
