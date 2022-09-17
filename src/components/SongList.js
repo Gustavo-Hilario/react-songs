@@ -37,6 +37,7 @@ const mapStateToProps = (state) => {
     return { songs: state.songs };
 };
 
-export default connect(mapStateToProps, { selectSong })(
+// connect(PROPS, ACTION CREATORS)
+export default connect(mapStateToProps, { selectSong: selectSong })(
     SongList
 ) /* Returning and running a function inside connect */;
